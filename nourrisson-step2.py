@@ -38,10 +38,10 @@ try:
     reader = csv.reader(file, delimiter = ';')
     next(reader, None)
     for row in reader:
-        liste_mois.append(row[0])
-        liste_poids.append(row[1])
-        liste_taille.append(row[2])
-        liste_perim.append(row[3])
+        liste_mois.append(int(row[0]))
+        liste_poids.append(float(row[1]))
+        liste_taille.append(float(row[2]))
+        liste_perim.append(float(row[3]))
         
 
 finally:
@@ -101,6 +101,7 @@ finally:
 
 # Affichage des graphiques à faire
 
+plt.figure(figsize=(18,8))
 #graphiques poids
 plt.subplot(1,3,1)
 plt.ylabel('Poids en kg')
@@ -110,7 +111,8 @@ indic = 0
 indic_const = 0
 for mois in liste_mois:
     poids = liste_poids[indic]
-    plt.scatter (mois,poids, color='black')  
+    plt.scatter (mois,poids, color='black')
+    indic += 1  
 
 plt.plot (liste_mois_light_poids,liste_poids_5, color = 'blue', label = '5%') 
 plt.plot (liste_mois_light_poids,liste_poids_25, color = 'orange', label ='25%') 
@@ -118,6 +120,8 @@ plt.plot (liste_mois_light_poids,liste_poids_50, color = 'green', label = '50%')
 plt.plot (liste_mois_light_poids,liste_poids_75, color = 'red', label = '75%') 
 plt.plot (liste_mois_light_poids,liste_poids_95, color = 'purple', label = '95%') 
 plt.legend (loc = 'upper left')
+#affichage de la grille
+plt.grid(True)
 
 #graphiques taille
 plt.subplot(1,3,2)
@@ -135,7 +139,10 @@ plt.plot (liste_mois_light_taille,liste_taille_25, color = 'orange', label ='25%
 plt.plot (liste_mois_light_taille,liste_taille_50, color = 'green', label = '50%') 
 plt.plot (liste_mois_light_taille,liste_taille_75, color = 'red', label = '75%') 
 plt.plot (liste_mois_light_taille,liste_taille_95, color = 'purple', label = '95%')     
+#affichage de la légende
 plt.legend (loc = 'upper left')
+#affichage de la grille
+plt.grid(True)
 
 #graphique périmètre cranien
 
@@ -155,6 +162,8 @@ plt.plot (liste_mois_light_perim,liste_perim_50, color = 'green', label = '50%')
 plt.plot (liste_mois_light_perim,liste_perim_75, color = 'red', label = '75%') 
 plt.plot (liste_mois_light_perim,liste_perim_95, color = 'purple', label = '95%')      
 plt.legend (loc = 'upper left')
+#affichage de la grille
+plt.grid(True)
 
 plt.show()
 
